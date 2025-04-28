@@ -24,17 +24,29 @@ def print_nametag(format_string, person):
 
 
 def fetch_website(urllib_version, url):
-    """docstring
-    """
-    # Import the requested version (2 or 3) of urllib
-    exec(f"import urllib{urllib_version} as urllib", globals())
-    # Fetch and print the requested URL
+    """Safely fetches a website using a specific urllib version."""
+    if urllib_version == "3":
+        # Safe use of urllib.request (Python 3)
+        try:
+            with urllib.request.urlopen(url) as response:
+                return response.read().decode()
+        except Exception as e:
+            return f"Error fetching URL with urllib3: {e}"
+    elif urllib_version == "http3":
+
+        
+# def fetch_website(urllib_version, url):
+#     """docstring
+#     """
+#     # Import the requested version (2 or 3) of urllib
+#     exec(f"import urllib{urllib_version} as urllib", globals())
+#     # Fetch and print the requested URL
  
-    try: 
-        http = urllib.PoolManager()
-        r = http.request('GET', url)
-    except:
-        print('Exception')
+#     try: 
+#         http = urllib.PoolManager()
+#         r = http.request('GET', url)
+#     except:
+#         print('Exception')
 
 
 def load_yaml(filename):
