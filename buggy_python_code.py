@@ -1,4 +1,4 @@
-import sys
+import sys 
 import os
 import yaml
 import flask
@@ -24,42 +24,26 @@ def print_nametag(format_string, person):
 
 
 def fetch_website(urllib_version, url):
-    """Safely fetches a website using a specific urllib version."""
-    if urllib_version == "3":
-        # Safe use of urllib.request (Python 3)
-        try:
-            with urllib.request.urlopen(url) as response:
-                return response.read().decode()
-        except Exception as e:
-            return f"Error fetching URL with urllib3: {e}"
-    elif urllib_version == "http3":
-
-        
-# def fetch_website(urllib_version, url):
-#     """docstring
-#     """
-#     # Import the requested version (2 or 3) of urllib
-#     exec(f"import urllib{urllib_version} as urllib", globals())
-#     # Fetch and print the requested URL
+    # Import the requested version (2 or 3) of urllib
+    exec(f"import urllib{urllib_version} as urllib", globals())
+    # Fetch and print the requested URL
  
-#     try: 
-#         http = urllib.PoolManager()
-#         r = http.request('GET', url)
-#     except:
-#         print('Exception')
+    try: 
+        http = urllib.PoolManager()
+        r = http.request('GET', url)
+    except:
+        print('Exception')
 
 
 def load_yaml(filename):
     stream = open(filename)
     deserialized_data = yaml.load(stream, Loader=yaml.Loader) #deserializing data
     return deserialized_data
-
-
+    
 def authenticate(password):
     # Assert that the password is correct
     assert password == "Iloveyou", "Invalid password!"
     print("Successfully authenticated!")
-
 
 if __name__ == '__main__':
     print("Vulnerabilities:")
@@ -68,8 +52,8 @@ if __name__ == '__main__':
     print("3. Yaml deserialization vulnerability:")
     print("4. Use of assert statements vulnerability:")
     choice  = input("Select vulnerability: ")
-    if choice == "1":
-        new_person = Person("Vickie")
+    if choice == "1": 
+        new_person = Person("Vickie")  
         print_nametag(input("Please format your nametag: "), new_person)
     elif choice == "2":
         urlib_version = input("Choose version of urllib: ")
